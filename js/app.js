@@ -23,9 +23,6 @@ let usedFortuneIndices = [];
 const pushButton      = document.getElementById('push-button');
 const ticketCounter   = document.getElementById('ticket-counter');
 const ticketStage     = document.getElementById('ticket-stage');
-const collectionArea  = document.getElementById('collection-area');
-const collectionTray  = document.getElementById('collection-tray');
-const collectionCount = document.getElementById('collection-count'); // may be null if label removed
 
 /* ========================================
    Sound Effects (using your audio files)
@@ -152,18 +149,6 @@ function animateCounter(target, duration) {
                 Math.floor(Math.random() * 10).toString();
         }
     }, frameInterval);
-}
-
-/* ---------- Add ticket to collection tray ---------- */
-function addToCollection(ticketImage) {
-    collectionArea.classList.add('has-tickets');
-    if (collectionCount) collectionCount.textContent = `(${ticketCount})`;
-
-    const collected = document.createElement('div');
-    collected.className = 'collected-ticket';
-    collected.innerHTML = createTicketHTML(ticketImage);
-
-    collectionTray.insertBefore(collected, collectionTray.firstChild);
 }
 
 /* ---------- Event listeners ---------- */
