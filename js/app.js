@@ -113,13 +113,16 @@ function dispenseTicket() {
     }, 200);
     animateCounter(ticketCount, LOADING_DELAY);
 
-    // 3) After loading delay — ticket starts sliding out (sound keeps playing)
+    // 3) After loading delay — clear old ticket, slide out new one
     setTimeout(() => {
         ticketStage.innerHTML = '';
 
         const ticket = document.createElement('div');
         ticket.className = 'ticket';
         ticket.innerHTML = createTicketHTML(ticketImage);
+
+        // Force reflow so animation restarts fresh
+        ticket.offsetHeight;
         ticketStage.appendChild(ticket);
 
     }, LOADING_DELAY);
