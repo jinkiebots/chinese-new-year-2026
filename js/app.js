@@ -77,7 +77,10 @@ function getRandomTicketImage() {
         idx = Math.floor(Math.random() * ticketImages.length);
     } while (usedTicketIndices.includes(idx));
     usedTicketIndices.push(idx);
-    return { src: ticketImages[idx], number: idx + 1 };
+    const src = ticketImages[idx];
+    const match = src.match(/Ticket\s*(\d+)/);
+    const number = match ? parseInt(match[1], 10) : idx + 1;
+    return { src, number };
 }
 
 /* ---------- Build ticket HTML ---------- */
