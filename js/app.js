@@ -124,10 +124,9 @@ function dispenseTicket() {
 
     }, LOADING_DELAY);
 
-    // 4) After ticket fully slides out — stop sound, add to collection
+    // 4) After ticket fully slides out — stop sound, ready for next
     setTimeout(() => {
         stopTicketLoading();
-        addToCollection(ticketImage);
         isDispensing = false;
     }, LOADING_DELAY + SLIDE_DURATION + 200);
 }
