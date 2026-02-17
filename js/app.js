@@ -77,7 +77,7 @@ function getRandomTicketImage() {
         idx = Math.floor(Math.random() * ticketImages.length);
     } while (usedTicketIndices.includes(idx));
     usedTicketIndices.push(idx);
-    return ticketImages[idx];
+    return { src: ticketImages[idx], number: idx + 1 };
 }
 
 /* ---------- Build ticket HTML ---------- */
@@ -93,8 +93,7 @@ function dispenseTicket() {
     if (isDispensing) return;
     isDispensing = true;
 
-    ticketCount++;
-    const ticketImage = getRandomTicketImage();
+    const ticketData = getRandomTicketImage();
 
     // 1) Button press — click sound + visual press
     playButtonClick();
@@ -108,7 +107,7 @@ function dispenseTicket() {
     setTimeout(() => {
         playTicketLoading();
     }, 200);
-    animateCounter(ticketCount, LOADING_DELAY);
+    animateCounter(ticketData.number, LOADING_DELAY);
 
     // 3) After loading delay — clear old ticket, slide out new one
     setTimeout(() => {
@@ -116,7 +115,7 @@ function dispenseTicket() {
 
         const ticket = document.createElement('div');
         ticket.className = 'ticket';
-        ticket.innerHTML = createTicketHTML(ticketImage);
+        ticket.innerHTML = createTicketHTML(ticketData.src);
 
         // Force reflow so animation restarts fresh
         ticket.offsetHeight;
