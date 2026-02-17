@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hong Kong Tram Fortune Tickets — CNY 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Ma+Shan+Zheng&family=Noto+Serif+HK:wght@400;700;900&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="page">
+
+        <!-- Machine -->
+        <div class="machine-wrapper">
+            <div class="machine">
+
+                <!-- Top panel with sign -->
+                <div class="machine-sign">
+                    <span class="sign-cn">電車幸運票</span>
+                    <span class="sign-en">Tram Fortune Tickets</span>
+                    <span class="sign-year">EST. 1904</span>
+                </div>
+
+                <!-- Display window -->
+                <div class="machine-window">
+                    <div class="window-label">幸運號碼 FORTUNE NO.</div>
+                    <div class="ticket-counter" id="ticket-counter">000</div>
+                </div>
+
+                <!-- Ticket slot: mouth split into top/bottom layers with ticket between -->
+                <div class="ticket-slot">
+                    <img src="assets/images/mouth.png" alt="" class="slot-mouth slot-mouth-top">
+                    <img src="assets/images/mouth.png" alt="" class="slot-mouth slot-mouth-bottom">
+                    <div class="ticket-stage" id="ticket-stage"></div>
+                </div>
+
+                <!-- Push button -->
+                <div class="button-area">
+                    <button class="push-button" id="push-button" aria-label="Press to get a fortune ticket">
+                        <img src="assets/images/button2.png" alt="Push button" draggable="false">
+                    </button>
+                    <div class="button-instruction">Press for your fortune</div>
+                </div>
+
+                <!-- Bottom trim -->
+                <div class="machine-footer">
+                    <div class="footer-stripe"></div>
+                    <span>丙午年 · Year of the Horse 2026</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Collected tickets tray -->
+        <div class="collection-area" id="collection-area">
+            <div class="collection-tray" id="collection-tray"></div>
+        </div>
+
+    </div>
+
+    <script src="js/fortunes.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

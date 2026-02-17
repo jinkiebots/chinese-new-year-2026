@@ -1,0 +1,532 @@
+/* ========================================
+   Hong Kong Tram Fortune Ticket Machine
+   Vintage mechanical aesthetic
+   ======================================== */
+
+/* ---------- Fonts ---------- */
+@import url('https://fonts.googleapis.com/css2?family=Special+Elite&family=Huninn&family=Noto+Serif+HK:wght@400;700;900&family=Inter:wght@400;600&display=swap');
+
+/* ---------- Reset ---------- */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ---------- Base ---------- */
+body {
+    font-family: 'Inter', sans-serif;
+    background: #1A1A18;
+    background-image:
+        radial-gradient(ellipse at 50% 0%, rgba(60, 50, 30, 0.5) 0%, transparent 60%);
+    min-height: 100vh;
+    color: #E8DFD0;
+    display: flex;
+    justify-content: center;
+}
+
+.page {
+    width: 100%;
+    max-width: 520px;
+    padding: 28px 16px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+}
+
+/* ---------- Header ---------- */
+header {
+    text-align: center;
+}
+
+header h1 {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.header-cn {
+    font-family: 'Huninn', 'Noto Serif HK', sans-serif;
+    font-weight: 900;
+    font-size: 2.4rem;
+    color: #F0C756;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    letter-spacing: 6px;
+}
+
+.header-en {
+    font-family: 'Special Elite', monospace;
+    font-size: 1.1rem;
+    color: #C8B88A;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.header-sub {
+    margin-top: 8px;
+    font-size: 0.9rem;
+    color: #8A8070;
+    letter-spacing: 1px;
+}
+
+/* ========================================
+   THE MACHINE
+   ======================================== */
+.machine-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    perspective: 800px;
+}
+
+.machine {
+    width: 340px;
+    background:
+        linear-gradient(178deg,
+            #8A1515 0%,
+            #7A0D0D 8%,
+            #700A0A 18%,
+            #680707 35%,
+            #620606 50%,
+            #680707 65%,
+            #5C0505 82%,
+            #4A0404 100%
+        );
+    border-radius: 18px 18px 10px 10px;
+    border: 3px solid #2E0202;
+    border-top-color: #4A0808;
+    border-bottom-color: #1E0101;
+    box-shadow:
+        inset 0 1px 0 rgba(255,200,180,0.15),
+        inset 0 -3px 10px rgba(0,0,0,0.3),
+        inset 4px 0 12px rgba(0,0,0,0.12),
+        inset -4px 0 12px rgba(0,0,0,0.12),
+        0 14px 44px rgba(0,0,0,0.55),
+        0 4px 10px rgba(0,0,0,0.3),
+        0 1px 0 #1E0101;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.machine::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        url('../assets/images/metallic-background-with-scratched-metal-design_1048-6456.avif') center / cover;
+    opacity: 0.75;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+    border-radius: inherit;
+    z-index: 1;
+}
+
+.machine::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(180deg,
+            rgba(255,210,190,0.07) 0%,
+            rgba(255,200,180,0.03) 3%,
+            transparent 10%
+        ),
+        linear-gradient(0deg,
+            rgba(0,0,0,0.05) 0%,
+            transparent 4%
+        );
+    pointer-events: none;
+    border-radius: inherit;
+    z-index: 1;
+}
+
+/* ---------- Sign Panel ---------- */
+.machine-sign {
+    width: 100%;
+    background: linear-gradient(180deg, #C8392A 0%, #A82E22 100%);
+    padding: 16px 20px 12px;
+    text-align: center;
+    border-bottom: 3px solid #7A1F18;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.machine-sign::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: rgba(255,200,100,0.2);
+}
+
+.sign-cn {
+    font-family: 'Huninn', 'Noto Serif HK', sans-serif;
+    font-weight: 900;
+    font-size: 1.6rem;
+    color: #FFE8A0;
+    letter-spacing: 8px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+}
+
+.sign-en {
+    font-family: 'Special Elite', monospace;
+    font-size: 0.75rem;
+    color: #F5D5C0;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.sign-year {
+    font-family: 'Special Elite', monospace;
+    font-size: 0.65rem;
+    color: #E8A090;
+    letter-spacing: 2px;
+    margin-top: 2px;
+}
+
+/* ---------- Display Window ---------- */
+.machine-window {
+    margin: 20px 0 16px;
+    width: 200px;
+    background: linear-gradient(180deg, #080806 0%, #0C0C08 40%, #101010 100%);
+    border: 3px solid #8A2A1A;
+    border-top-color: #6A1A12;
+    border-bottom-color: #A03020;
+    border-radius: 8px;
+    padding: 10px 16px 12px;
+    text-align: center;
+    box-shadow:
+        inset 0 3px 12px rgba(0,0,0,0.9),
+        inset 0 -1px 4px rgba(0,0,0,0.5),
+        inset 2px 0 6px rgba(0,0,0,0.4),
+        inset -2px 0 6px rgba(0,0,0,0.4),
+        0 2px 4px rgba(0,0,0,0.4),
+        0 1px 0 rgba(255,200,170,0.06);
+    position: relative;
+    z-index: 2;
+}
+
+.window-label {
+    font-family: 'Special Elite', monospace;
+    font-size: 0.55rem;
+    color: #C08A7A;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
+
+.ticket-counter {
+    font-family: 'Special Elite', monospace;
+    font-size: 2.4rem;
+    color: #F0C756;
+    text-shadow: 0 0 12px rgba(240, 199, 86, 0.4);
+    letter-spacing: 6px;
+    line-height: 1;
+}
+
+/* ---------- Ticket Slot ---------- */
+.ticket-slot {
+    width: 300px;
+    margin: 4px 0 0;
+    position: relative;
+    z-index: 2;
+}
+
+.slot-mouth {
+    width: 100%;
+    display: block;
+    pointer-events: none;
+}
+
+/*
+ * Top image: in normal flow (gives the container its height).
+ * Clip-path hides below the slit. Sits IN FRONT of the ticket.
+ */
+.slot-mouth-top {
+    position: relative;
+    z-index: 10;
+    clip-path: inset(0 0 40% 0);
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5));
+}
+
+/*
+ * Bottom image: absolute, same position as top.
+ * Clip-path hides above the slit. Sits BEHIND the ticket.
+ */
+.slot-mouth-bottom {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5));
+}
+
+/*
+ * Ticket stage: absolutely positioned over the slit area
+ * so it doesn't affect the machine's height.
+ */
+.ticket-stage {
+    position: absolute;
+    top: 55%;
+    left: 0;
+    right: 0;
+    z-index: 5;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* ---------- Dispensed Ticket ---------- */
+.ticket {
+    width: 150px;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    position: relative;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.4), 0 2px 6px rgba(0,0,0,0.3);
+    transform: translateY(-100%);
+    opacity: 0;
+    animation: ticketDispense 3.5s ease-out forwards;
+    cursor: grab;
+    background: none;
+}
+
+.ticket img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+
+@keyframes ticketDispense {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    /* Appear behind the slit */
+    5% {
+        opacity: 1;
+        transform: translateY(-100%);
+    }
+    /* First push — jerky start */
+    12% {
+        transform: translateY(-78%);
+    }
+    /* Pause — mechanism catches */
+    20% {
+        transform: translateY(-75%);
+    }
+    /* Second push — slides a bit more */
+    30% {
+        transform: translateY(-52%);
+    }
+    /* Stall — paper grips */
+    38% {
+        transform: translateY(-50%);
+    }
+    /* Third push — bigger shove */
+    50% {
+        transform: translateY(-28%);
+    }
+    /* Brief pause */
+    56% {
+        transform: translateY(-26%);
+    }
+    /* Final push out */
+    72% {
+        transform: translateY(-8%);
+    }
+    /* Slow creep to final position */
+    88% {
+        transform: translateY(-2%);
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* ---------- Push Button Area ---------- */
+.button-area {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 140px 10px 36px 0;
+    position: relative;
+    z-index: 1;
+}
+
+.push-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: block;
+    width: 99px;
+    height: 99px;
+    border-radius: 50%;
+    transition: transform 0.15s ease, filter 0.15s ease;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4));
+}
+
+.push-button img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 50%;
+    display: block;
+}
+
+.push-button:hover {
+    transform: scale(1.08);
+    filter: drop-shadow(0 6px 12px rgba(0,0,0,0.5)) brightness(1.1);
+}
+
+.push-button:active,
+.push-button.pressed {
+    transform: scale(0.92);
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)) brightness(0.9);
+}
+
+.button-instruction {
+    font-size: 0.7rem;
+    color: #C08A7A;
+    margin-top: -8px;
+    font-family: 'Special Elite', monospace;
+    letter-spacing: 1px;
+}
+
+/* ---------- Machine Footer ---------- */
+.machine-footer {
+    width: 100%;
+    background: linear-gradient(180deg, #560505, #3A0303);
+    padding: 10px 16px;
+    text-align: center;
+    border-top: 2px solid #8A2A1A;
+    position: relative;
+    z-index: 2;
+}
+
+.footer-stripe {
+    width: 60%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #F0C756, transparent);
+    margin: 0 auto 6px;
+    opacity: 0.4;
+}
+
+.machine-footer span {
+    font-family: 'Special Elite', monospace;
+    font-size: 0.6rem;
+    color: #C08A7A;
+    letter-spacing: 2px;
+}
+
+/* ========================================
+   Collection Tray
+   ======================================== */
+.collection-area {
+    width: 100%;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.collection-area.has-tickets {
+    display: flex;
+}
+
+.collection-label {
+    font-family: 'Special Elite', monospace;
+    font-size: 0.8rem;
+    color: #8A8070;
+    letter-spacing: 1px;
+}
+
+.collection-label span {
+    color: #F0C756;
+}
+
+.collection-tray {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+}
+
+/* Collected ticket (smaller version) */
+.collected-ticket {
+    width: 120px;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    background: none;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+    transition: transform 0.2s ease;
+    animation: collectFadeIn 0.4s ease forwards;
+}
+
+.collected-ticket img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.collected-ticket:hover {
+    transform: translateY(-3px) rotate(-1deg);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+}
+
+
+@keyframes collectFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* ========================================
+   Responsive
+   ======================================== */
+@media (max-width: 400px) {
+    .machine {
+        width: 300px;
+    }
+
+    .header-cn {
+        font-size: 1.8rem;
+        letter-spacing: 4px;
+    }
+
+    .header-en {
+        font-size: 0.9rem;
+    }
+
+    .sign-cn {
+        font-size: 1.3rem;
+        letter-spacing: 5px;
+    }
+
+    .ticket {
+        width: 170px;
+    }
+
+    .collected-ticket {
+        width: 140px;
+    }
+}
