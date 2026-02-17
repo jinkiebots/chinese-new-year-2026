@@ -282,6 +282,7 @@ header h1 {
     display: flex;
     justify-content: center;
     overflow: hidden;
+    pointer-events: none;
 }
 
 /* ---------- Dispensed Ticket ---------- */
